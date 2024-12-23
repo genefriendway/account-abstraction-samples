@@ -220,10 +220,10 @@ describe('TokenPaymaster', function () {
     await ethers.provider.send('hardhat_setNextBlockBaseFeePerGas', [utils.hexlify(op.maxFeePerGas)])
     const tx = await entryPoint
       .handleOps([opPacked], beneficiaryAddress, {
-        gasLimit: 3e7,
-        maxFeePerGas: op.maxFeePerGas,
-        maxPriorityFeePerGas: op.maxFeePerGas
-      }
+          gasLimit: 3e7,
+          maxFeePerGas: op.maxFeePerGas,
+          maxPriorityFeePerGas: op.maxFeePerGas
+        }
       )
       .then(async tx => await tx.wait())
 

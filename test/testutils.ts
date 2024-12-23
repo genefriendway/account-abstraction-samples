@@ -298,11 +298,12 @@ export async function createAccount (
   }> {
   const accountFactory = _factory ?? await new SimpleAccountFactory__factory(ethersSigner).deploy(entryPoint)
   const implementation = await accountFactory.accountImplementation()
-  const entryPointContract = EntryPoint__factory.connect(entryPoint, ethersSigner)
-  const senderCreator = await entryPointContract.senderCreator()
-  await (ethersSigner.provider as JsonRpcProvider).send('hardhat_setBalance', [senderCreator, toHex(100e18)])
-  const senderCreatorSigner = await ethers.getImpersonatedSigner(senderCreator)
-  await accountFactory.connect(senderCreatorSigner).createAccount(accountOwner, 0)
+  // const entryPointContract = EntryPoint__factory.connect(entryPoint, ethersSigner)
+  // const senderCreator = await entryPointContract.senderCreator()
+  // await (ethersSigner.provider as JsonRpcProvider).send('hardhat_setBalance', [senderCreator, toHex(100e18)])
+  // const senderCreatorSigner = await ethers.getImpersonatedSigner(senderCreator)
+  // await accountFactory.connect(senderCreatorSigner).createAccount(accountOwner, 0)
+  await accountFactory.createAccount(accountOwner, 0)
   const accountAddress = await accountFactory.getAddress(accountOwner, 0)
   const proxy = SimpleAccount__factory.connect(accountAddress, ethersSigner)
   return {
