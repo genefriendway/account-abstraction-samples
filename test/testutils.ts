@@ -12,11 +12,14 @@ import {
 } from 'ethers/lib/utils'
 import { BigNumber, BigNumberish, Contract, ContractReceipt, Signer, Wallet } from 'ethers'
 import {
+  EntryPoint__factory,
   IERC20,
   SimpleAccount,
+  SimpleAccountFactory,
   SimpleAccountFactory__factory,
   SimpleAccount__factory,
-  SimpleAccountFactory, EntryPoint__factory
+  TestERC20__factory,
+  TestPaymasterRevertCustomError__factory
 } from '../typechain'
 import { BytesLike, Hexable } from '@ethersproject/bytes'
 // import { JsonRpcProvider } from '@ethersproject/providers'
@@ -162,8 +165,8 @@ export function rethrow (): (e: Error) => void {
 
 const decodeRevertReasonContracts = new Interface([
   ...EntryPoint__factory.createInterface().fragments,
-  // ...TestPaymasterRevertCustomError__factory.createInterface().fragments,
-  // ...TestERC20__factory.createInterface().fragments, // for OZ errors,
+  ...TestPaymasterRevertCustomError__factory.createInterface().fragments,
+  ...TestERC20__factory.createInterface().fragments, // for OZ errors,
   'error ECDSAInvalidSignature()'
 ]) // .filter(f => f.type === 'error'))
 
