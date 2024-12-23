@@ -6,7 +6,8 @@
   "repository": "https://github.com/eth-infinitism/account-abstraction-samples",
   "license": "MIT",
   "scripts": {
-    "compile": "hardhat compile"
+    "compile": "hardhat compile",
+    "test": "hardhat test"
   },
   "dependencies": {
     "@account-abstraction/contracts": "^0.7.0",
@@ -20,18 +21,19 @@
     "@nomicfoundation/hardhat-network-helpers": "^1.0.0",
     "@nomicfoundation/hardhat-toolbox": "^5.0.0",
     "@nomicfoundation/hardhat-verify": "^2.0.0",
+    "@typechain/ethers-v5": "^10.1.0",
     "@typechain/ethers-v6": "^0.5.0",
-    "@typechain/hardhat": "^9.0.0",
+    "@typechain/hardhat": "^2.3.0",
     "@types/chai": "^4.2.0",
     "@types/mocha": ">=9.1.0",
     "@types/node": ">=18.0.0",
     "chai": "^4.2.0",
-    "ethers": "^6.4.0",
+    "ethers": "^5.4.2",
     "hardhat": "^2.22.17",
     "hardhat-gas-reporter": "^1.0.8",
     "solidity-coverage": "^0.8.0",
     "ts-node": ">=8.0.0",
-    "typechain": "^8.3.0",
+    "typechain": "^8.1.0",
     "typescript": ">=4.5.0"
   }
 }
