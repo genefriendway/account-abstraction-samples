@@ -75,7 +75,7 @@ export function getUserOpHash (op: UserOperation, entryPoint: string, chainId: n
 }
 
 export const DefaultsForUserOp: UserOperation = {
-  sender: AddressZero,
+  sender: ethers.constants.AddressZero,
   nonce: 0,
   initCode: '0x',
   callData: '0x',
@@ -155,9 +155,11 @@ export async function fillUserOp (op: Partial<UserOperation>, entryPoint?: Entry
     }
     if (op1.verificationGasLimit == null) {
       if (provider == null) throw new Error('no entrypoint/provider')
-      const senderCreator = await entryPoint?.senderCreator()
+      // const senderCreator = await entryPoint?.senderCreator()
       const initEstimate = await provider.estimateGas({
-        from: senderCreator,
+        // TODO: call from SenderCreator
+        // from: senderCreator,
+        from: entryPoint?.address,
         to: initAddr,
         data: initCallData,
         gasLimit: 10e6
